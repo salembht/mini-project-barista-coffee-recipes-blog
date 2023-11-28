@@ -1,16 +1,24 @@
-
+<?php 
+// Check for the error query parameter
+if (isset($_GET['error']) && $_GET['error'] === 'not_valid') {
+  $errorMessage = "Credential not valid. Please try again.";
+}
+?>
 <section class="ftco-section contact-section">
         <div class="container mt-5">
           <div class="row justify-content-center">
             <div class="col-md-6 ftco-animate">
               <h1 class="mb-3 mt-5 bread text-center">Sign In</h1>
+              <?php if (!empty($errorMessage)) : ?>
+                    <div class="alert alert-danger text-center"><?php echo $errorMessage; ?></div>
+                <?php endif; ?>
               <form action="signin" method="post">
               <!-- <input type="hidden" name="user" > -->
                 <div class="form-group">
-                  <input type="text" class="form-control" placeholder="Username" name="username">
+                  <input type="text" class="form-control" placeholder="Username" name="username" required>
                 </div>
                 <div class="form-group">
-                  <input type="password" class="form-control" placeholder="Password" name="password">
+                  <input type="password" class="form-control" placeholder="Password" name="password" required>
                 </div>
                 <div class="form-group form-check">
                   <input type="checkbox" class="form-check-input" id="rememberMe">

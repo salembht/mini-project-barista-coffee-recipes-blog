@@ -28,7 +28,27 @@ if($pageName == "/signin"){
             header("Location: ".ROOT_PATH);
             exit;
         }else{
+            // header("Location: ".ROOT_PATH."/signin?error=not_valid");
             header("Location: ".ROOT_PATH."/signin");
+
+            exit;
+        }
+    }
+    
+}else if($pageName == "/signup"){
+    if (isset($_POST['username']) && isset($_POST['password'])) {
+        $username = $_POST['username'];
+        $password = $_POST['password'];
+
+        if (signup($username, $password)) {
+            // Signup successful, redirect to /
+            header("Location: " . ROOT_PATH);
+            exit;
+        } else {
+            // Signup failed, redirect to /signup with an error message
+            // header("Location: " . ROOT_PATH . "/signup?error=username_exists");
+            header("Location: " . ROOT_PATH . "/signup");
+
             exit;
         }
     }
@@ -38,6 +58,24 @@ if($pageName == "/signin"){
     // Redirect to /
     header("Location: ".ROOT_PATH);
     exit;
+}else if($pageName == "/add_recipe"){
+    if (isset($_POST['recipe_name']) && isset($_POST['category_id'])&& isset($_POST['brewing_method'])&& isset($_POST['flavor'])&& isset($_POST['instructions'])&& isset($_POST['pic'])) {
+        $recipe_name = $_POST['recipe_name'];
+        $category_id = $_POST['category_id'];
+        $brewing_method = $_POST['brewing_method'];
+        $flavor = $_POST['flavor'];
+        $instructions = $_POST['instructions'];
+        $pic = "assets/images/".$_POST['pic'];
+        if (add_recipe($recipe_name, $category_id,$flavor,$brewing_method,$instructions,$pic)) {
+            header("Location: " . ROOT_PATH);
+            exit;
+        } else {
+            // header("Location: " . ROOT_PATH . "/signup?error=username_exists");
+            header("Location: " . ROOT_PATH . "/add_recipe");
+            exit;
+        }
+    }
+    
 }
 
 
