@@ -1,7 +1,8 @@
 <?php 
 // Check for the error query parameter
-if (isset($_GET['error']) && $_GET['error'] === 'username_exists') {
-  $errorMessage = "Username already exists. Please choose a different username.";
+if (isset($_SESSION['signup_error'])) {
+  $errorMessage = $_SESSION['signup_error']; 
+  unset($_SESSION['signup_error']);
 }
 ?>
 
@@ -10,7 +11,7 @@ if (isset($_GET['error']) && $_GET['error'] === 'username_exists') {
         <div class="row justify-content-center">
             <div class="col-md-6 ftco-animate">
             <?php if (!empty($errorMessage)) : ?>
-                    <div class="alert alert-danger text-center"><?php echo $errorMessage; ?></div>
+                    <div class="alert alert-danger" role="alert"><?php echo $errorMessage; ?></div>
                 <?php endif; ?>
                 <h1 class="mb-3 mt-5 bread text-center">Sign Up</h1>
                 <form action="signup" method="post" onsubmit="return validateForm()">
@@ -28,7 +29,7 @@ if (isset($_GET['error']) && $_GET['error'] === 'username_exists') {
                     <div class="form-group text-center">
                         <input type="submit" value="Sign Up" class="btn btn-primary py-3 px-5">
                     </div>
-                    <p class="text-center">Already have an account? <a href="signin.html">Sign in</a></p>
+                    <p class="text-center">Already have an account? <a href="signin">Sign in</a></p>
                 </form>
             </div>
         </div>

@@ -36,9 +36,9 @@ function signin($username, $password)
         // Check if user exists and password matches
         if (!empty($user)) {
             // Start a session and store the user ID
-            session_start();
-            $_SESSION['username'] = $user['username'];
-            $_SESSION['current_user'] = $user['id'];
+            // session_start();
+            $_SESSION['username'] = $user[0]['username'];
+            $_SESSION['current_user'] = $user[0]['id'];
             $_SESSION['isSignedIn'] = true;
             return true; // Authentication successful
         }
@@ -51,8 +51,13 @@ function signup($username, $password)
     global $connection;
     
     // Check if the username already exists
-    $existingUser = db_select($connection, "users", "*", array("column" => "username", "operator" => "=", "value" => $username));
-    
+    $where[] =  array(
+        "column" => "username", 
+        "operator" => "=", 
+        "value" => $username
+    );
+    $existingUser = db_select($connection, "users", "*",$where);
+    // print_r($existingUser); exit;
     if (!empty($existingUser)) {
         return false; // Username already exists, return false
     }
@@ -99,9 +104,9 @@ function add_recipe($recipe_name, $category_id,$flavor,$brewing_method,$instruct
         "category_id" => $category_id,
         "pic" => $pic,
         "user_id" => $_SESSION['current_user'],
-
-
+        "post_date" => date("Y-m-d H:i:s", date_timestamp_get(new DateTime())),
     );
+    // print_r($data); exit;
     
     $recipe = db_insert($connection, "recipes", $data);
     
@@ -110,6 +115,20 @@ function add_recipe($recipe_name, $category_id,$flavor,$brewing_method,$instruct
     }
     
     return false; 
+}
+function getAll_recipes(){
+    global $connection;
+
+    $recipes = db_select($connection, "recipes", "*");
+    if ($recipes) {
+        return $recipes;
+    //     foreach ($recipes as $recipe) {
+    //     $recipeName = $recipe['recipe_name'];
+    //     $instructions = $recipe['instructions'];
+    // }
+} else {
+    return false;
+}
 }
 // // Redirect to index.php
 // header("Location: index.php");

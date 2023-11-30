@@ -36,6 +36,7 @@
 	<link rel="manifest" href="assets/images//site.webmanifest">
 
 
+
   </head>
   <body>
   	<nav class="navbar navbar-expand-lg navbar-dark ftco_navbar bg-dark ftco-navbar-light" id="ftco-navbar">
@@ -46,16 +47,25 @@
 	      </button>
 	      <div class="collapse navbar-collapse" id="ftco-nav">
 	        <ul class="navbar-nav ml-auto">
-	          <li class="nav-item active"><a href="<?php echo ROOT_PATH; ?>" class="nav-link">Home</a></li>
-			  <li class="nav-item "><a href="add_recipe" class="nav-link">Add Recipe</a></li>
-	          <li class="nav-item"><a href="recipes" class="nav-link">Recipes</a></li>
-			  <li class="nav-item"><a href="bookmarks" class="nav-link">Bookmarks</a></li>
+	          <li id ="home" class="nav-item"><a href="<?php echo ROOT_PATH; ?>" class="nav-link">Home</a></li>
+			  <?php
+			  if(isUserSignedIn()){
+				echo '<li id ="add_recipe" class="nav-item "><a href="add_recipe" class="nav-link">Add Recipe</a></li>';
+			  }
+			   ?>
+	          <li id ="recipes" class="nav-item"><a href="recipes" class="nav-link">Recipes</a></li>
+			  <?php
+			  if(isUserSignedIn()){
+				echo '			  <li id ="bookmarks" class="nav-item"><a href="bookmarks" class="nav-link">Bookmarks</a></li>
+				';
+			  }
+			   ?>
 
 
-	          <li class="nav-item"><a href="contact" class="nav-link">Contact</a></li>
+	          <li id ="contact" class="nav-item"><a href="contact" class="nav-link">Contact</a></li>
 
 			  <?php if(!isUserSignedIn()){ ?>
-				<li class="nav-item cart"><a href="signin" class="nav-link"><span class="icon icon-sign-in"></span></a></li>
+				<li id ="signin" class="nav-item cart"><a href="signin" class="nav-link"><span class="icon icon-sign-in"></span></a></li>
                             <?php }else{ ?>
 								<li class="nav-item cart"><a href="signout" class="nav-link"><span class="icon icon-sign-out"></span></a></li>
                             <?php } ?>
@@ -63,3 +73,5 @@
 	      </div>
 		  </div>
 	  </nav>
+
+	 

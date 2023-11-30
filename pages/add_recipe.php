@@ -3,7 +3,7 @@
       <div class="container">
         <div class="row">
           <div class="col ftco-animate">
-						<form action="add_recipe" method="post" class="billing-form  p-3 p-md-5" >
+						<form action="" method="post" class="billing-form  p-3 p-md-5"  enctype="multipart/form-data" >
 							<h3 class="mb-5 billing-heading  text-center">My Recipe</h3>
 	          	<div class="row align-items-end">
 	          		<div class="col-md-6">
@@ -63,7 +63,7 @@
                 <div class="col-md-12">
 				<div class="form-group">
     			<label for="exampleFormControlFile1">Upload picture</label>
-				<input type="file" name="pic" class="form-control-file" id="exampleFormControlFile1" accept="image/jpeg, image/png">
+				<input type="file" name="pic" class="form-control-file" id="exampleFormControlFile1">
 			</div>
 
                 <div class="form-group text-center">
@@ -76,3 +76,9 @@
                 </div>
 	            </div>
 	          </form>
+
+
+			  <script>
+	  var currentPage = document.getElementById("add_recipe");
+	  currentPage.classList.add("active");
+	  </script>
