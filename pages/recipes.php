@@ -98,12 +98,20 @@ while ($row = mysqli_fetch_assoc($result)) {
       <div class="row d-flex">
 
       <?php foreach ($recipes as $recipe) {
+                    // print_r($recipe); 
+
             // Retrieve user information based on user_id
             $where[] =  array( "column" => "id", 
             "operator" => "=", 
             "value" => $recipe['user_id']);
             $user = db_select($connection, 'users', 'username', $where);
-            $username = !empty($user[0]['username']) ? $user[0]['username'] : 'Unknown User';
+            // print_r($user); 
+            unset($where);
+
+            $username = !empty($user[0]['username']) ? $user[0]['username'] : 'unknown';
+                //  print_r($username); 
+
+
             $instructions = $recipe['instructions'];
                     $characterLimit = 100; // Set the desired character limit
                     $truncatedInstructions = strlen($instructions) > $characterLimit ? substr($instructions, 0, $characterLimit) . '...' : $instructions;
@@ -164,10 +172,10 @@ while ($row = mysqli_fetch_assoc($result)) {
             <ul>
               <li><a href="#">&lt;</a></li>
               <li class="active"><span>1</span></li>
-              <li><a href="#">2</a></li>
-              <li><a href="#">3</a></li>
+              <!-- <li><a href="#">2</a></li> -->
+              <!-- <li><a href="#">3</a></li>
               <li><a href="#">4</a></li>
-              <li><a href="#">5</a></li>
+              <li><a href="#">5</a></li> -->
               <li><a href="#">&gt;</a></li>
             </ul>
           </ul>

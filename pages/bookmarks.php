@@ -67,7 +67,7 @@ if ($_SERVER['REQUEST_METHOD'] === 'POST') {
             "operator" => "=", 
             "value" => $recipe['user_id']);
             $user = db_select($connection, 'users', 'username', $where);
-            $username = !empty($user[0]['username']) ? $user[0]['username'] : 'Unknown User';
+            $username = !empty($user[0]['username']) ? $user[0]['username'] : 'fatima';
             $instructions = $recipe['instructions'];
                     $characterLimit = 100; // Set the desired character limit
                     $truncatedInstructions = strlen($instructions) > $characterLimit ? substr($instructions, 0, $characterLimit) . '...' : $instructions;
@@ -92,16 +92,14 @@ if ($_SERVER['REQUEST_METHOD'] === 'POST') {
             ?>
             <div class="col-md-4 d-flex ftco-animate">
                 <div class="blog-entry align-self-stretch">
-                    <a href="recipe_details.php?id=<?php echo $recipe['id']; ?>" class="block-20" style="background-image: url('<?php echo $recipe['pic']; ?>');">
-                    </a>
+                    <a href="recipe_details.php?id=<?php echo $recipe['id']; ?>" class="block-20" style="background-image: url('<?php echo $recipe['pic']; ?>');"></a>
                     <div class="text py-4 d-block">
                         <div class="meta">
                             <div><a><?php echo $recipe['post_date']; ?></a></div>
                             <div><a> <?php echo $username; ?></a></div>
-                         
                             <div><a class="meta-chat"><span class="icon-chat"></span> <?php echo $commentCount[0]['count']; ?></a></div>
                             <div><a class="meta-chat"><span class="icon-heart"></span> <?php echo $likeCount[0]['count']; ?></a></div>                        
-                          </div>
+                        </div>
                         <h3 class="heading mt-2"><a><?php echo $recipe['recipe_name']; ?></a></h3>
 
                         <p><?php  echo $truncatedInstructions; ?></p>
@@ -111,9 +109,13 @@ if ($_SERVER['REQUEST_METHOD'] === 'POST') {
                         </form>
                     </div>
                 </div>
-                <?php } ?>
+               
             </div>
-        <?php } ?>
+            <?php } ?>
+    
+    </div>
+    <?php } ?>
+
     </div>
 
 

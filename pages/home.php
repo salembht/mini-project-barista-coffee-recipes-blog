@@ -246,7 +246,7 @@ if ($result->num_rows > 0) {
             "operator" => "=", 
             "value" => $recipe['user_id']);
             $user = db_select($connection, 'users', 'username', $where);
-            $username = !empty($user[0]['username']) ? $user[0]['username'] : 'Unknown User';
+            $username = !empty($user[0]['username']) ? $user[0]['username'] : 'samaha';
             $instructions = $recipe['instructions'];
                     $characterLimit = 100; // Set the desired character limit
                     $truncatedInstructions = strlen($instructions) > $characterLimit ? substr($instructions, 0, $characterLimit) . '...' : $instructions;

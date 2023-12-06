@@ -43,7 +43,7 @@ if($pageName == "/signin"){
 
         if (signup($username, $password)) {
             // Signup successful, redirect to /
-            header("Location: " . ROOT_PATH);
+            header("Location: " . ROOT_PATH."/signin");
             exit;
         } else {
             // Signup failed, redirect to /signup with an error message
@@ -73,7 +73,7 @@ if($pageName == "/signin"){
         $instructions = $_POST['instructions'];
         $pic = "assets/images/".$_FILES['pic']['name'];
         if (add_recipe($recipe_name, $category_id,$flavor,$brewing_method,$instructions,$pic)) {
-            header("Location: " . ROOT_PATH);
+            header("Location: " . ROOT_PATH. "/recipes");
             exit;
         } else {
             // header("Location: " . ROOT_PATH . "/signup?error=username_exists");
